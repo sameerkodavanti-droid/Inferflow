@@ -31,7 +31,7 @@ async def send_email(
     smtp_port = int(
         os.getenv(
             "SMTP_PORT",
-            587
+            "587"
         )
     )
 
