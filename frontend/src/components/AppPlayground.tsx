@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+
+const BASE_URL = import.meta.env.VITE_API_URL;
 import {
   Send,
   Bot,
@@ -224,7 +226,7 @@ export function AppPlayground() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/chat/stream",
+        `${BASE_URL}/chat/stream`,
         {
           method: "POST",
           headers: {
