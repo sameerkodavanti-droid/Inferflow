@@ -13,3 +13,4 @@ alembic
 redis
 redis[hiredis]
 aiosmtplib
+requests

@@ -35,6 +35,9 @@ async def send_email(
         )
     )
 
+    use_tls = smtp_port == 465
+    start_tls = smtp_port == 587
+
     if (
         not sender_email
         or not sender_password
@@ -69,7 +72,9 @@ async def send_email(
 
             port=smtp_port,
 
-            start_tls=True,
+            use_tls=use_tls,
+
+            start_tls=start_tls,
 
             username=sender_email,
 
