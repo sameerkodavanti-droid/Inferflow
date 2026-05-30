@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+openai
+python-dotenv
+google-generativeai
+tiktoken
+sqlalchemy
+asyncpg
+pyjwt
+pwdlib[argon2]
+pydantic[email]
+alembic
+redis
+redis[hiredis]
+aiosmtplib
