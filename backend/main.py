@@ -27,7 +27,8 @@ import os
 
 cors_origins_str = os.getenv("CORS_ORIGINS", "*")
 allow_origins = [o.strip() for o in cors_origins_str.split(",") if o.strip()]
-
+print("CORS_ORIGINS =", repr(os.getenv("CORS_ORIGINS")))
+print("allow_origins =", allow_origins)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allow_origins,
