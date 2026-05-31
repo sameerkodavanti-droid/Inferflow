@@ -599,10 +599,10 @@ export function AppPlayground() {
 
                 <div
                   className={cn(
-                    "w-full sm:max-w-[80%]",
+                    "w-fit max-w-[85%] sm:max-w-[75%]",
                     message.role === "assistant"
-                      ? "items-start"
-                      : "items-end text-right"
+                      ? "items-start text-left"
+                      : "items-end text-left ml-auto"
                   )}
                 >
 
