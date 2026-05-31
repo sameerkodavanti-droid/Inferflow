@@ -35,9 +35,6 @@ async def send_email(
         )
     )
 
-    use_tls = smtp_port == 465
-    start_tls = smtp_port == 587
-
     if (
         not sender_email
         or not sender_password
@@ -62,6 +59,13 @@ async def send_email(
         subtype="html"
     )
 
+    # use_tls and start_tls are mutually exclusive in aiosmtplib 5.x
+    tls_kwargs: dict = (
+        {"use_tls": True}
+        if smtp_port == 465
+        else {"start_tls": True}
+    )
+
     try:
 
         await aiosmtplib.send(
@@ -72,13 +76,11 @@ async def send_email(
 
             port=smtp_port,
 
-            use_tls=use_tls,
-
-            start_tls=start_tls,
-
             username=sender_email,
 
-            password=sender_password
+            password=sender_password,
+
+            **tls_kwargs
         )
 
     except Exception as e:
