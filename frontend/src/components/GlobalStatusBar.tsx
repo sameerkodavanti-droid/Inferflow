@@ -3,14 +3,17 @@ import {
   Activity,
   Zap,
   Database,
-  Wifi,
-  Cpu
+  Menu
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { fetchAnalyticsOverview } from '../api';
 import { DashboardOverviewResponse } from '../types';
 
-export function GlobalStatusBar() {
+interface GlobalStatusBarProps {
+  onMenuToggle?: () => void;
+}
+
+export function GlobalStatusBar({ onMenuToggle }: GlobalStatusBarProps) {
   const [data, setData] = useState<DashboardOverviewResponse | null>(null);
 
   useEffect(() => {
@@ -26,14 +29,26 @@ export function GlobalStatusBar() {
   ] : [];
 
   return (
-    <div className="h-10 border-b border-white/5 bg-black/40 backdrop-blur-md px-6 flex items-center justify-between shrink-0 z-50">
-      <div className="flex items-center gap-6">
+    <div className="h-10 border-b border-white/5 bg-black/40 backdrop-blur-md px-3 sm:px-6 flex items-center justify-between shrink-0 z-50">
+      <div className="flex items-center gap-3 sm:gap-6">
+        {/* Hamburger — mobile only */}
+        <button
+          onClick={onMenuToggle}
+          className="lg:hidden text-zinc-400 hover:text-white p-1 rounded-md hover:bg-white/5 transition-colors"
+          aria-label="Open menu"
+        >
+          <Menu className="w-4 h-4" />
+        </button>
+
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">System Operational</span>
+          <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest hidden sm:block">System Operational</span>
+          <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest sm:hidden">Online</span>
         </div>
-        <div className="h-4 w-px bg-white/10" />
-        <div className="flex items-center gap-8">
+
+        {/* Metrics — hidden on mobile, visible from md */}
+        <div className="h-4 w-px bg-white/10 hidden md:block" />
+        <div className="hidden md:flex items-center gap-8">
           {metrics.map((m, i) => (
             <div key={i} className="flex items-center gap-2 group cursor-default">
               <m.icon className={cn("w-3 h-3 transition-transform group-hover:scale-110", m.color)} />
@@ -48,7 +63,7 @@ export function GlobalStatusBar() {
 
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2 bg-white/5 px-2 py-0.5 rounded-full border border-white/5">
-          <span className="text-[9px] font-bold text-blue-400 uppercase tracking-widest">Routing Mode</span>
+          <span className="text-[9px] font-bold text-blue-400 uppercase tracking-widest hidden sm:block">Routing Mode</span>
           <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]" />
           <span className="text-[10px] font-bold text-white uppercase">Intelligent</span>
         </div>

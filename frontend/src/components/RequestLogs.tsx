@@ -39,11 +39,11 @@ export function RequestLogs() {
   );
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-zinc-950 px-8 py-8 overflow-hidden">
+    <div className="flex-1 flex flex-col h-full bg-zinc-950 px-4 sm:px-8 py-4 sm:py-8 overflow-hidden">
       <div className="max-w-7xl mx-auto w-full space-y-6 flex flex-col h-full">
-        <div className="flex items-end justify-between shrink-0">
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 shrink-0">
           <div className="space-y-2">
-            <h1 className="text-3xl font-bold text-white tracking-tight">Request Explorer</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Request Explorer</h1>
             <p className="text-zinc-400">Granular visibility into every transaction flowing through InferFlow.</p>
           </div>
         </div>

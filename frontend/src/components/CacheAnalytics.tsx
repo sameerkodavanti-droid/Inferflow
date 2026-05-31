@@ -34,7 +34,7 @@ export function CacheAnalytics() {
   if (!cacheData) return <div className="p-8 text-white">Loading cache data...</div>;
 
   return (
-    <div className="flex-1 overflow-auto bg-zinc-950 p-8 space-y-8">
+    <div className="flex-1 overflow-auto bg-zinc-950 p-4 sm:p-8 space-y-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <header className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
@@ -42,7 +42,7 @@ export function CacheAnalytics() {
               <Database className="w-6 h-6 text-blue-400" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-white tracking-tight">Cache Observability</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Cache Observability</h1>
               <p className="text-zinc-400">Analyze performance gains and cost reduction via intelligent semantic caching.</p>
             </div>
           </div>

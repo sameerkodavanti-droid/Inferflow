@@ -353,11 +353,11 @@ export function AppPlayground() {
   // ─────────────────────────────────────────────────────
 
   return (
-    <div className="flex flex-col h-screen bg-zinc-950 text-white">
+    <div className="flex flex-col h-full min-h-0 bg-zinc-950 text-white">
 
       {/* HEADER */}
 
-      <header className="px-6 py-4 border-b border-white/5 flex items-center justify-between bg-black/20 backdrop-blur-md">
+      <header className="px-3 sm:px-6 py-3 sm:py-4 border-b border-white/5 flex items-center justify-between bg-black/20 backdrop-blur-md">
 
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-blue-600/20 flex items-center justify-center border border-blue-500/30">
@@ -365,13 +365,13 @@ export function AppPlayground() {
           </div>
 
           <div>
-            <h2 className="text-lg font-semibold text-white">
+            <h2 className="text-base sm:text-lg font-semibold text-white">
               Inference Engine
             </h2>
 
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-medium">
+              <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-medium hidden sm:block">
                 System Ready
               </span>
             </div>
@@ -384,15 +384,14 @@ export function AppPlayground() {
 
           <button
             onClick={() => setHistoryOpen(!historyOpen)}
-            className="flex items-center gap-3 bg-white/5 hover:bg-white/10 text-white px-4 py-2 border border-white/10 rounded-2xl"
+            className="flex items-center gap-2 sm:gap-3 bg-white/5 hover:bg-white/10 text-white px-3 sm:px-4 py-2 border border-white/10 rounded-2xl"
           >
             <History className="w-4 h-4 text-zinc-400" />
 
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col items-start hidden sm:flex">
               <span className="text-sm font-medium">
                 Chat Sessions
               </span>
-
             </div>
 
             <ChevronDown
@@ -409,7 +408,7 @@ export function AppPlayground() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="absolute right-0 mt-2 w-80 bg-zinc-950 border border-white/10 rounded-2xl overflow-hidden z-50"
+                className="absolute right-0 mt-2 w-[calc(100vw-1.5rem)] sm:w-80 max-w-xs sm:max-w-sm bg-zinc-950 border border-white/10 rounded-2xl overflow-hidden z-50"
               >
 
                 {/* NEW CHAT */}
@@ -549,18 +548,18 @@ export function AppPlayground() {
 
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto p-6"
+        className="flex-1 overflow-y-auto p-3 sm:p-6"
       >
-        <div className="max-w-3xl mx-auto space-y-8">
+        <div className="max-w-3xl mx-auto space-y-6 sm:space-y-8">
 
           {messages.length === 0 && (
-            <div className="h-[60vh] flex flex-col items-center justify-center text-center">
+            <div className="h-[50vh] sm:h-[60vh] flex flex-col items-center justify-center text-center">
 
-              <div className="w-24 h-24 rounded-[2rem] bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center mb-8">
-                <Zap className="w-12 h-12 text-white" />
+              <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-[1.5rem] sm:rounded-[2rem] bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center mb-6 sm:mb-8">
+                <Zap className="w-8 h-8 sm:w-12 sm:h-12 text-white" />
               </div>
 
-              <h1 className="text-4xl font-bold">
+              <h1 className="text-3xl sm:text-4xl font-bold">
                 INFERFLOW
               </h1>
 
@@ -577,7 +576,7 @@ export function AppPlayground() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className={cn(
-                  "flex gap-4",
+                  "flex gap-3 sm:gap-4",
                   message.role === "assistant"
                     ? "flex-row"
                     : "flex-row-reverse"
@@ -586,21 +585,21 @@ export function AppPlayground() {
 
                 <div
                   className={cn(
-                    "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border",
+                    "w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 border",
                     message.role === "assistant"
                       ? "bg-blue-600/10 border-blue-500/20 text-blue-400"
                       : "bg-zinc-800 border-white/10 text-zinc-400"
                   )}
                 >
                   {message.role === "assistant"
-                    ? <Wand2 className="w-5 h-5" />
-                    : <User className="w-5 h-5" />
+                    ? <Wand2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                    : <User className="w-4 h-4 sm:w-5 sm:h-5" />
                   }
                 </div>
 
                 <div
                   className={cn(
-                    "max-w-[80%]",
+                    "w-full sm:max-w-[80%]",
                     message.role === "assistant"
                       ? "items-start"
                       : "items-end text-right"
@@ -609,7 +608,7 @@ export function AppPlayground() {
 
                   <div
                     className={cn(
-                      "px-4 py-3 rounded-2xl text-sm",
+                      "px-3 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl text-sm",
                       message.role === "assistant"
                         ? "bg-white/5 border border-white/5"
                         : "bg-blue-600"
@@ -640,9 +639,9 @@ export function AppPlayground() {
 
       {/* INPUT */}
 
-      <div className="p-6 border-t border-white/5 bg-black/40">
+      <div className="p-3 sm:p-6 border-t border-white/5 bg-black/40">
 
-        <div className="max-w-3xl mx-auto flex gap-2">
+        <div className="max-w-3xl mx-auto flex gap-2 items-center">
 
           <Input
             value={input}
@@ -651,14 +650,14 @@ export function AppPlayground() {
               e.key === "Enter" && handleSend()
             }
             placeholder="Type your prompt..."
-            className="flex-1 bg-white/5 border-white/10 text-white h-14 rounded-2xl"
+            className="flex-1 bg-white/5 border-white/10 text-white h-12 sm:h-14 rounded-2xl"
             disabled={isLoading}
           />
 
           {isLoading ? (
             <Button
               onClick={handleStop}
-              className="bg-red-600 hover:bg-red-500 h-14 px-6 rounded-xl"
+              className="bg-red-600 hover:bg-red-500 h-12 sm:h-14 px-4 sm:px-6 rounded-xl shrink-0"
             >
               <Square className="w-4 h-4 fill-current" />
             </Button>
@@ -666,7 +665,7 @@ export function AppPlayground() {
             <Button
               onClick={handleSend}
               disabled={!input.trim()}
-              className="bg-blue-600 hover:bg-blue-500 h-14 px-6 rounded-xl"
+              className="bg-blue-600 hover:bg-blue-500 h-12 sm:h-14 px-4 sm:px-6 rounded-xl shrink-0"
             >
               <Send className="w-4 h-4" />
             </Button>

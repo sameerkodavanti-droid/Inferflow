@@ -21,6 +21,7 @@ import { Loader2 } from 'lucide-react';
 
 function AppContent() {
   const [currentPage, setCurrentPage] = useState<Page>('playground');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
@@ -57,17 +58,23 @@ function AppContent() {
     <div className="dark flex flex-col h-screen bg-black text-white selection:bg-blue-500/30 selection:text-white antialiased font-sans overflow-hidden">
       <div className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
       
-      <GlobalStatusBar />
+      <GlobalStatusBar onMenuToggle={() => setMobileMenuOpen(o => !o)} />
       
       <div className="flex flex-1 overflow-hidden z-10">
-        <Sidebar currentPage={currentPage} onPageChange={setCurrentPage} />
+        <Sidebar
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+          mobileOpen={mobileMenuOpen}
+          onMobileClose={() => setMobileMenuOpen(false)}
+        />
         
         <main className="flex-1 flex relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] rounded-full -mr-48 -mt-48 pointer-events-none z-0" />
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/5 blur-[100px] rounded-full -ml-32 -mb-32 pointer-events-none z-0" />
           
             <div className="flex-1 z-10 flex overflow-hidden">
-            <div className="flex-1 flex flex-col overflow-hidden">
+            {/* Add pb-16 on mobile for the bottom tab bar */}
+            <div className="flex-1 flex flex-col overflow-hidden pb-16 lg:pb-0">
               {renderPage()}
             </div>
           </div>

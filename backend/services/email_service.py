@@ -1,13 +1,9 @@
 import os
 
-from email.message import EmailMessage
-
-import aiosmtplib
-
 from dotenv import load_dotenv
-
+import requests
 load_dotenv()
-
+import httpx
 
 async def send_email(
     to_email: str,
@@ -19,69 +15,49 @@ async def send_email(
         "SENDER_EMAIL"
     )
 
-    sender_password = os.getenv(
-        "SENDER_PASSWORD"
+    brevo_api= os.getenv(
+        "BREVO_API"
     )
-
-    smtp_server = os.getenv(
-        "SMTP_SERVER",
-        "smtp.gmail.com"
-    )
-
-    smtp_port = int(
-        os.getenv(
-            "SMTP_PORT",
-            "587"
-        )
-    )
-
+    
     if (
         not sender_email
-        or not sender_password
+        or not brevo_api
     ):
 
         raise Exception(
-            "SMTP credentials missing"
+            "Email send failed"
         )
 
-    message = EmailMessage()
-
-    message["From"] = sender_email
-
-    message["To"] = to_email
-
-    message["Subject"] = subject
-
-    message.set_content("Your email client does not support HTML.")
-
-    message.add_alternative(
-        body,
-        subtype="html"
-    )
-
-    # use_tls and start_tls are mutually exclusive in aiosmtplib 5.x
-    tls_kwargs: dict = (
-        {"use_tls": True}
-        if smtp_port == 465
-        else {"start_tls": True}
-    )
 
     try:
-
-        await aiosmtplib.send(
-
-            message,
-
-            hostname=smtp_server,
-
-            port=smtp_port,
-
-            username=sender_email,
-
-            password=sender_password,
-
-            **tls_kwargs
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+            "https://api.brevo.com/v3/smtp/email",
+            headers={
+                "accept": "application/json",
+                "api-key": brevo_api,
+                "content-type": "application/json"
+            },
+            json={
+                "sender": {
+                    "name": "InferFlow",
+                    "email": sender_email
+                },
+                "to": [
+                    {
+                        "email": to_email
+                    }
+                ],
+                "subject": subject,
+                "htmlContent": body
+            }
         )
+        print(response.status_code)
+        print(response.text)
+        response.raise_for_status()
+
+
+        
 
     except Exception as e:
 

@@ -32,7 +32,7 @@ export function DecisionInspector() {
   }, []);
 
   return (
-    <div className="flex-1 overflow-auto bg-zinc-950 p-8 space-y-8">
+    <div className="flex-1 overflow-auto bg-zinc-950 p-4 sm:p-8 space-y-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <header className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
@@ -40,7 +40,7 @@ export function DecisionInspector() {
               <Workflow className="w-6 h-6 text-purple-400" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-white tracking-tight">Routing Inspector</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Routing Inspector</h1>
               <p className="text-zinc-400">Examine real-time routing decisions and performance diagnostics.</p>
             </div>
           </div>
@@ -53,7 +53,7 @@ export function DecisionInspector() {
             No routing decisions recorded yet. Start a chat in the AI Playground!
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-6 lg:gap-8">
             {/* Main Decision Detail View */}
             <div className="lg:col-span-2 space-y-6">
               {selectedDecision && (

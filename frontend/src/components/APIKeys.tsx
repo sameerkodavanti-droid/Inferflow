@@ -111,11 +111,11 @@ export function APIKeys() {
   if (loading) return <div className="p-8 text-white">Loading keys...</div>;
 
   return (
-    <div className="flex-1 overflow-auto bg-zinc-950 p-8">
+    <div className="flex-1 overflow-auto bg-zinc-950 p-4 sm:p-8">
       <div className="max-w-6xl mx-auto space-y-8">
-        <div className="flex items-end justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
           <div className="space-y-2">
-            <h1 className="text-3xl font-bold text-white tracking-tight">API Management</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">API Management</h1>
             <p className="text-zinc-400">Securely manage your platform access keys and set usage quotas.</p>
           </div>
 

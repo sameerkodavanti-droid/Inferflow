@@ -235,12 +235,12 @@ export function Settings() {
     };
 
     return (
-        <div className="flex flex-col h-screen bg-zinc-950 text-white">
+        <div className="flex flex-col h-full bg-zinc-950 text-white">
             {/* Page Header (Matching existing InferFlow style) */}
-            <header className="px-6 py-5 border-b border-white/5 flex items-center justify-between bg-black/20 backdrop-blur-md">
+            <header className="px-4 sm:px-6 py-4 sm:py-5 border-b border-white/5 flex items-center justify-between bg-black/20 backdrop-blur-md">
                 <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                        <h1 className="text-xl font-extrabold text-white tracking-tight">Settings</h1>
+                        <h1 className="text-lg sm:text-xl font-extrabold text-white tracking-tight">Settings</h1>
                         <Badge variant="outline" className="bg-blue-500/10 text-blue-400 border-blue-500/20 text-[10px] font-mono leading-none">
                             v1.4.0
                         </Badge>
@@ -252,7 +252,7 @@ export function Settings() {
             </header>
 
             {/* Main Settings Body */}
-            <div className="flex-1 overflow-y-auto p-6 lg:p-8 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 custom-scrollbar">
                 <div className="max-w-3xl mx-auto space-y-8 pb-10">
 
                     {/* 1. ACCOUNT SECTION */}

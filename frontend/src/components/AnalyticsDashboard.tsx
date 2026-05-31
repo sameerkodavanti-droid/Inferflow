@@ -99,10 +99,10 @@ export function AnalyticsDashboard() {
   }));
 
   return (
-    <div className="flex-1 overflow-auto bg-zinc-950 p-8">
+    <div className="flex-1 overflow-auto bg-zinc-950 p-4 sm:p-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-bold text-white tracking-tight">System Analytics</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">System Analytics</h1>
           <p className="text-zinc-400">Real-time performance metrics across your model fleet.</p>
         </div>
 
@@ -135,12 +135,12 @@ export function AnalyticsDashboard() {
 
         {/* Global Health Section */}
         {globalHealth && (
-          <div className="p-4 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-between gap-6 backdrop-blur-md">
+          <div className="p-4 bg-white/5 border border-white/10 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 backdrop-blur-md">
             <div>
               <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest block mb-1">Global Health Status</span>
               <h3 className="text-sm font-semibold text-emerald-400">All Systems Operational</h3>
             </div>
-            <div className="flex items-center gap-8">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-8">
               <div className="text-right">
                 <span className="text-[10px] text-zinc-500 uppercase block">Global Latency</span>
                 <span className="text-sm font-bold text-white">{globalHealth.avg_latency.toFixed(2)}ms</span>
@@ -190,7 +190,7 @@ export function AnalyticsDashboard() {
                   <div className="space-y-4 mt-4">
                     {providerData.map((p, i) => (
                       <div key={i} className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                           <div className="w-3 h-3 rounded-full" style={{ backgroundColor: p.color }} />
                           <span className="text-sm text-zinc-300">{p.name}</span>
                         </div>
@@ -214,7 +214,7 @@ export function AnalyticsDashboard() {
             <CardContent>
               <div className="space-y-4">
                 {overview.provider_health.length > 0 ? overview.provider_health.map((ph, i) => (
-                  <div key={i} className="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/5">
+                  <div key={i} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 bg-white/5 rounded-xl border border-white/5 gap-2">
                     <div>
                       <h4 className="text-sm font-medium text-white">{ph.model_type}</h4>
                       <p className="text-xs text-zinc-400 mt-1">{ph.requests} requests served</p>
