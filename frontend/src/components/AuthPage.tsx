@@ -130,7 +130,6 @@ export function AuthPage() {
     setShowOtpScreen(false);
 
     setOtpCode('');
-    setGeneratedOtp('');
 
     setNewPassword('');
     setConfirmPassword('');
