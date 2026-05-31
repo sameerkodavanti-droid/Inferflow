@@ -52,8 +52,6 @@ async def send_email(
                 "htmlContent": body
             }
         )
-        print(response.status_code)
-        print(response.text)
         response.raise_for_status()
 
 
